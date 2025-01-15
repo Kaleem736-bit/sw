@@ -1,34 +1,38 @@
-// script.js
+// تحقق من صحة نموذج الاتصال
+document.addEventListener("DOMContentLoaded", function() {
+    const contactForm = document.querySelector("form");
+    if (contactForm) {
+        contactForm.addEventListener("submit", function(event) {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const message = document.getElementById("message").value;
+            let valid = true;
 
-// وظيفة للتحقق من صحة نموذج الحجز
-function validateBookingForm(event) {
-    event.preventDefault(); // منع الإرسال الافتراضي للنموذج
+            // تحقق من أن الحقول ليست فارغة
+            if (!name || !email || !message) {
+                alert("يرجى ملء جميع الحقول.");
+                valid = false;
+            }
+            // تحقق من صحة البريد الإلكتروني
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("يرجى إدخال بريد إلكتروني صحيح.");
+                valid = false;
+            }
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const date = document.getElementById('date').value;
-
-    // التحقق من أن جميع الحقول مليئة
-    if (name === '' || email === '' || date === '') {
-        alert('يرجى ملء جميع الحقول.');
-        return;
+            if (!valid) {
+                event.preventDefault(); // منع الإرسال إذا كانت هناك أخطاء
+            } else {
+                alert("تم إرسال الرسالة بنجاح!");
+            }
+        });
     }
 
-    // التحقق من تنسيق البريد الإلكتروني
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailPattern.test(email)) {
-        alert('يرجى إدخال بريد إلكتروني صالح.');
-        return;
-    }
-
-    // عرض رسالة تأكيد بعد الحجز
-    alert(`تم الحجز بنجاح!\nالاسم: ${name}\nالبريد الإلكتروني: ${email}\nتاريخ الاستشارة: ${date}`);
-}
-
-// إضافة حدث التحميل للنموذج
-document.addEventListener('DOMContentLoaded', function () {
-    const bookingForm = document.querySelector('form');
+    // تفعيل زر الحجز
+    const bookingForm = document.querySelector("form");
     if (bookingForm) {
-        bookingForm.addEventListener('submit', validateBookingForm);
+        bookingForm.addEventListener("submit", function(event) {
+            alert("تم حجز الاستشارة بنجاح!");
+        });
     }
 });
