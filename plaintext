@@ -1,0 +1,9 @@
+herbal_spiritual_healing/
+│
+├── index.html              # الصفحة الرئيسية
+├── products.html           # صفحة المنتجات
+├── consultations.html       # صفحة الاستشارات
+├── booking.html            # صفحة الحجز
+├── payment.html            # صفحة خيارات الدفع
+├── styles.css              # أنماط الموقع
+└── script.js               # سكريبتات الجافا سكريبت
